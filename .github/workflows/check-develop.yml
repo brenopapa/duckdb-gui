@@ -3,7 +3,7 @@ name: Required format for main (lint)
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   sql-check:

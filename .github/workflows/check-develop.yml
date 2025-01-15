@@ -24,4 +24,4 @@ jobs:
             pip install sqlfluff
   
         - name: Run sqlfluff Script
-          run: sqlfluff lint src/sql/ --dialect bigquery
+          run: sqlfluff lint src/sql/ --dialect duckdb

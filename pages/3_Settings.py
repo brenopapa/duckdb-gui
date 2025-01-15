@@ -4,7 +4,7 @@ st.set_page_config(page_title="DuckDB GUI - Settings", page_icon="🦆")
 
 st.write(""" # 🦆 DuckDB GUI - Settings """)
 
-with open('sql/settings.sql', 'r') as file:
+with open('src/sql/settings.sql', 'r') as file:
     sql = file.read()
 
 result = st.session_state.db.query_raw(sql)

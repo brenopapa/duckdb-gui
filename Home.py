@@ -23,6 +23,6 @@ with st.form("Input SQL"):
                 
         with st.spinner("Querying..."):
             try:
-                st.table(st.session_state.db.query(query))
+                st.table(st.session_state.db.query_raw(query))
             except Exception as e:
                 st.error(f"Error!  - Exception: {e}")

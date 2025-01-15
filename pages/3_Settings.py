@@ -1,13 +1,11 @@
 import streamlit as st
+import src.queries as queries
 
 st.set_page_config(page_title="DuckDB GUI - Settings", page_icon="🦆")
 
 st.write(""" # 🦆 DuckDB GUI - Settings """)
 
-with open('src/sql/settings.sql', 'r') as file:
-    sql = file.read()
-
-result = st.session_state.db.query_raw(sql)
+result = st.session_state.db.query_raw(queries.settings())
 
 for row in result.df().itertuples():
         st.text_input(key=f'input_{row.name}', label=f'{row.name} - {row.description} ({row.input_type})', value=row.value, placeholder=row.value)

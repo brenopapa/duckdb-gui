@@ -1,7 +1,3 @@
-Here’s a `README.md` with a drawing using Unicode characters for the project template, showing the relationship between DuckDB and Streamlit:
-
----
-
 # DuckDB GUI 🦆📊
 
 A graphical user interface designed to simplify the use of DuckDB outside the command line. This application uses Streamlit as a GUI, providing an intuitive way to interact with a DuckDB database.

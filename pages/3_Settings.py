@@ -18,3 +18,4 @@ for row in result.df().itertuples():
                     st.success(f"Setting '{row.name}' updated!")
                 except Exception as e:
                     st.error(f"Error updating config: {e}")
+        st.divider()

@@ -6,6 +6,8 @@ A graphical user interface designed to simplify the use of DuckDB outside the co
 
 DuckDB GUI enables users to easily execute queries, visualize results, and manage DuckDB databases directly through a Streamlit interface. It eliminates the need for the command line, making it more accessible to non-technical users and enhancing productivity.
 
+This project takes inspiration from [duckdb-sql-tools](https://github.com/RandomFractals/duckdb-sql-tools) by [RandomFractals](https://github.com/RandomFractals).
+
 ## Features ⚡
 
 - Execute SQL queries on DuckDB 📝

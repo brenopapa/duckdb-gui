@@ -5,7 +5,7 @@ st.set_page_config(page_title="DuckDB GUI - Settings", page_icon="🦆")
 
 st.write(""" # 🦆 DuckDB GUI - Settings """)
 
-result = st.session_state.db.query_raw(queries.settings())
+result = st.session_state.db.query(queries.settings(), return_df=False)
 
 app_settings_defaults = {
     'ingestion_field': 'date'

@@ -21,6 +21,6 @@ with st.form("Input SQL"):
                 
         with st.spinner("Querying..."):
             try:
-                st.dataframe(st.session_state.db.query_raw(query))
+                st.dataframe(st.session_state.db.query(query, return_df=False))
             except Exception as e:
                 st.error(f"Error!  - Exception: {e}")

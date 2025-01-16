@@ -7,7 +7,7 @@ st.write(""" # 🦆 DuckDB GUI - Volumes """)
 
 with st.spinner("Loading DuckDB Volumes..."):
     try: 
-        result = st.session_state.db.query_df(queries.volumes())
+        result = st.session_state.db.query(queries.volumes())
 
         selected = st.multiselect('Select tables:', result['table_name'].unique(), default=result['table_name'].unique())
         
@@ -17,7 +17,7 @@ with st.spinner("Loading DuckDB Volumes..."):
 
         for table in result['table_name'].unique():
             try:
-                timeline = st.session_state.db.query_df(queries.ingestion_timeline(table, st.session_state.get(f'input_ingestion_field')))['rows'].tolist()            
+                timeline = st.session_state.db.query(queries.ingestion_timeline(table, st.session_state.get(f'input_ingestion_field')))['rows'].tolist()            
                 result.loc[result['table_name'] == table, 'ingestion_timeline'] = str(timeline)
             except Exception as e:
                 timeline = []

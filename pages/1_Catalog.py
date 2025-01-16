@@ -7,7 +7,7 @@ st.write(""" # 🦆 DuckDB GUI - Catalog """)
 
 with st.spinner("Loading DuckDB Catalog..."):
     try: 
-        result = st.session_state.db.query_df(queries.catalog())
+        result = st.session_state.db.query(queries.catalog())
 
         tables = result['table_name'].unique()
 
@@ -17,12 +17,12 @@ with st.spinner("Loading DuckDB Catalog..."):
                 tab1, tab2, tab3 = st.tabs(["Columns", "Data Preview", "Lineage"])
 
                 with tab1:
-                    fields = st.session_state.db.query_df(queries.table_fields(table))
+                    fields = st.session_state.db.query(queries.table_fields(table))
                     st.dataframe(fields, hide_index=True)
                 with tab2:
-                    size = st.session_state.db.query_df(queries.estimated_rows(table))
+                    size = st.session_state.db.query(queries.estimated_rows(table))
                     st.markdown(f"**Total estimated size:** {size.iloc[0]['size']}")
-                    st.table(st.session_state.db.query_df(queries.data_preview(table)))
+                    st.table(st.session_state.db.query(queries.data_preview(table)))
                 with tab3:
                     st.header("TBD")
 

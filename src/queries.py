@@ -1,4 +1,4 @@
-def schemas():
+def catalog():
     query = """
     SELECT
         t.table_name,
@@ -34,10 +34,17 @@ def volumes():
     query = """
 SELECT
     table_name,
-    estimated_size
-FROM duckdb_tables()
+    estimated_size as estimated_rows,
+    ROUND((estimated_size * 100.0) / total_size, 2) || '%' AS percentage_of_total
+FROM (
+    SELECT
+        table_name,
+        estimated_size,
+        SUM(estimated_size) OVER () AS total_size
+    FROM duckdb_tables()
+) t
 ORDER BY 
-    estimated_size desc;
+    estimated_size DESC;
     """
     return query
 
@@ -67,6 +74,40 @@ def data_preview(table):
                     SELECT *
                     FROM
                         {table} AS t
-                    LIMIT 10
+                    USING SAMPLE 10
             '''.format(table=table)
+    return query
+
+def estimated_rows(table):
+
+    query = '''
+SELECT
+    CONCAT(
+    estimated_size, ' rows (',
+    ROUND((estimated_size * 100.0) / total_size, 2), '%', ' of total database)') as size
+FROM (
+    SELECT
+        table_name,
+        estimated_size,
+        SUM(estimated_size) OVER () AS total_size
+    FROM duckdb_tables()
+    
+) t
+WHERE table_name = '{table}'
+ORDER BY 
+    estimated_size DESC;
+            '''.format(table=table)
+    return query
+
+def ingestion_timeline(table, ingestion_field):
+
+    ingestion_field = '_ingestionDateTime' if ingestion_field is None else ingestion_field
+
+    query = '''
+        SELECT 
+        CAST({ingestion_field} AS DATE) as _ingestionDate,
+        COUNT(*) AS rows
+        FROM {table}
+        GROUP BY _ingestionDate
+        '''.format(table=table, ingestion_field=ingestion_field)
     return query

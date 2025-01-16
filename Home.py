@@ -1,8 +1,6 @@
 import streamlit as st
 import src.duckdb_client as ddb
 
-from src.custom_elements import table
-
 st.session_state.db = ddb.duckdb_client()
 
 st.set_page_config(page_title="DuckDB GUI - Home", page_icon="🦆")
@@ -23,6 +21,6 @@ with st.form("Input SQL"):
                 
         with st.spinner("Querying..."):
             try:
-                st.table(st.session_state.db.query_raw(query))
+                st.dataframe(st.session_state.db.query_raw(query))
             except Exception as e:
                 st.error(f"Error!  - Exception: {e}")

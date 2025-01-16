@@ -63,6 +63,7 @@ The following features are planned for future development:
 - **Custom Elements:** The app will allow users to create and add custom elements with distinct behaviors, offering greater flexibility in interacting with the database. ✨
 - **Additional Charts:** More charts will be added to the volumes page, enhancing the data visualization capabilities. 📊
 - **Default Queries:** The app will have predefined queries that run on startup, making it easier for users to begin working with the database immediately. 🔄
+- **Data Lineage:** There are plans to add data lineage functionality, allowing users to track how data is transformed and processed within the system.
 
 ## Architecture Diagram 🔄
 

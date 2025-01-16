@@ -69,7 +69,7 @@ The following features are planned for future development:
 ```
            ┌─────────────┐        ┌─────────────┐        ┌───────────────┐
            │  DuckDB     │ ◄───►  │ Streamlit   │ ◄───►  │     User      │
-           │  Database   │        │ Interface   │        │ Interractions │
+           │  Database   │        │ Interface   │        │  Interactions │
            └─────────────┘        └─────────────┘        └───────────────┘
 
 ```
